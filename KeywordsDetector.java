@@ -23,8 +23,9 @@ public class KeywordsDetector {
     public static void detectAndPrint(String[] sentences, String[] keywords) {
         for (int i = 0; i<sentences.length; i++){
             for (int j = 0; j<keywords.length; j++){
-                if (contains(sentences[i], keywords[j])){
-                    System.err.println(sentences[i]);
+                if (contains(lowerCase(sentences[i]), lowerCase(keywords[j]))){
+                    System.out.println(sentences[i]);
+                    break;
                 }
             }
         }
@@ -39,5 +40,25 @@ public class KeywordsDetector {
                 }
         }
             return false;
+        }
+
+        public static String lowerCase(String str) {
+            if (str == null) {
+                return str;
+            }
+            String str2 = "";
+            char[] chars =new char[str.length()];
+            for (int i = 0; i < chars.length; i++) {
+                chars[i] = str.charAt(i);
+            }
+            for (int i = 0; i < chars.length; i++) {
+                if (chars[i] >= 'A' && chars[i] <= 'Z') {
+                    chars[i] += 'a' - 'A';
+                }
+            }
+            for (int i = 0; i < chars.length; i++) {
+                str2 = str2 + chars[i];
+            }
+            return str2; 
         }
 }
